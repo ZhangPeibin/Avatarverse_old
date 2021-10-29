@@ -3,7 +3,7 @@ schema:
   file: ./src/schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: YourContract
+    name: AvatarNFT
     network: localhost
     source:
       address: "{{localhost_YourContractAddress}}"

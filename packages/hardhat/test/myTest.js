@@ -14,7 +14,7 @@ describe("My Dapp", function () {
 
   describe("YourContract", function () {
     it("Should deploy YourContract", async function () {
-      const YourContract = await ethers.getContractFactory("YourContract");
+      const YourContract = await ethers.getContractFactory("AvatarNFT");
 
       myContract = await YourContract.deploy();
     });

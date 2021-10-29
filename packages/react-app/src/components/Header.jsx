@@ -1,16 +1,48 @@
-import { PageHeader } from "antd";
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import {css, jsx } from '@emotion/react'
 import React from "react";
+import {Account} from "./index";
 
-// displays a page header
+const TITLE = css`
+  margin-left: 1rem;
+  font-weight: bold;
+  font-size: 1.9rem;
+  cursor: default;
+  color: hsl(211, 19%, 70%);
 
-export default function Header() {
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
+`;
+
+const HEADER_RIGHT=css`
+  margin-left: auto;
+`;
+export default function Header(props) {
   return (
-    <a href="https://github.com/austintgriffith/scaffold-eth" target="_blank" rel="noopener noreferrer">
-      <PageHeader
-        title="🏗 scaffold-eth"
-        subTitle="forkable Ethereum dev stack focused on fast product iteration"
-        style={{ cursor: "pointer" }}
-      />
-    </a>
+    <header style={{
+      display:"flex",
+      alignItems:"center",
+      height:"6rem",
+      padding: "1rem 2rem"
+    }}>
+
+      <h2 css={TITLE}>Avatar Metaverse</h2>
+
+      <div css={HEADER_RIGHT}>
+        <Account
+          address={props.address}
+          localProvider={props.localProvider}
+          userSigner={props.userSigner}
+          mainnetProvider={props.mainnetProvider}
+          price={props.price}
+          web3Modal={props.web3Modal}
+          loadWeb3Modal={props.loadWeb3Modal}
+          logoutOfWeb3Modal={props.logoutOfWeb3Modal}
+          blockExplorer={props.blockExplorer}
+        />
+    </div>
+    </header>
   );
 }

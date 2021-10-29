@@ -2,6 +2,7 @@ require("dotenv").config();
 const { utils } = require("ethers");
 const fs = require("fs");
 const chalk = require("chalk");
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 require("@nomiclabs/hardhat-waffle");
 require("@tenderly/hardhat-tenderly");
@@ -26,7 +27,7 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "localhost";
+const defaultNetwork = "mumbai";
 
 const mainnetGwei = 21;
 
@@ -51,10 +52,10 @@ module.exports = {
    * an estimate of gas for contract deployments and function calls
    * More here: https://hardhat.org/plugins/hardhat-gas-reporter.html
    */
-  gasReporter: {
-    currency: "USD",
-    coinmarketcap: process.env.COINMARKETCAP || null,
-  },
+  // gasReporter: {
+  //   currency: "USD",
+  //   coinmarketcap: process.env.COINMARKETCAP || null,
+  // },
 
   // if you want to deploy to a testnet, mainnet, or xdai, you will need to configure:
   // 1. An Infura key (or similar)
@@ -73,31 +74,6 @@ module.exports = {
       */
     },
 
-    // rinkeby: {
-    //   url: `https://rinkeby.infura.io/v3/${process.env.RINKEBY_INFURA_KEY}`,
-    //   accounts: [`${process.env.RINKEBY_DEPLOYER_PRIV_KEY}`],
-    // },
-    // kovan: {
-    //   url: `https://rinkeby.infura.io/v3/${process.env.KOVAN_INFURA_KEY}`,
-    //   accounts: [`${process.env.KOVAN_DEPLOYER_PRIV_KEY}`],
-    // },
-    // mainnet: {
-    //   url: `https://mainnet.infura.io/v3/${process.env.MAINNET_INFURA_KEY}`,
-    //   accounts: [`${process.env.MAINNET_DEPLOYER_PRIV_KEY}`],
-    // },
-    // ropsten: {
-    //   url: `https://ropsten.infura.io/v3/${process.env.ROPSTEN_INFURA_KEY}`,
-    //   accounts: [`${process.env.ROPSTEN_DEPLOYER_PRIV_KEY}`],
-    // },
-    // goerli: {
-    //   url: `https://goerli.infura.io/v3/${process.env.GOERLI_INFURA_KEY}`,
-    //   accounts: [`${process.env.GOERLI_DEPLOYER_PRIV_KEY}`],
-    // },
-    // xdai: {
-    //   url: 'https://dai.poa.network',
-    //   gasPrice: 1000000000,
-    //   accounts: [`${process.env.XDAI_DEPLOYER_PRIV_KEY}`],
-    // },
 
     rinkeby: {
       url: "https://rinkeby.infura.io/v3/460f40a260564ac4a4f4b3fffb032dad", // <---- YOUR INFURA ID! (or it won't work)
@@ -173,6 +149,15 @@ module.exports = {
       accounts: {
         mnemonic: mnemonic(),
       },
+    },
+    mumbai: {
+      url: "https://rpc-mumbai.maticvigil.com/",
+      gasPrice: 1100000000,
+      chainId: 80001,
+      // accounts: {
+      //   // mnemonic: mnemonic(),
+      // },
+      accounts: ["5f12489da563d3c2ca754bd093cbe3f3061fbf862d982c228e374561176284ed"]
     },
     rinkebyArbitrum: {
       url: "https://rinkeby.arbitrum.io/rpc",
@@ -303,9 +288,7 @@ module.exports = {
     solcVersion: "0.7.6",
   },
   namedAccounts: {
-    deployer: {
-      default: 0, // here this will by default take the first account as deployer
-    },
+    deployer: 0,
   },
 };
 
