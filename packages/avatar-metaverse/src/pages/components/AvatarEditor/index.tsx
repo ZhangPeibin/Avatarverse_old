@@ -69,7 +69,7 @@ export default function AvatarEditor(props: { mintingNFT: (arg0: string) => void
       Object.keys(AvatarStyleCount).map(async (type) => {
         /* eslint-disable */
         const svgRaw = (
-          await require(`!!raw-loader!@/public/avatar/preview/${type}/${
+          await require(`!!raw-loader!../../../../public/avatar/preview/${type}/${
             config[type as AvatarPart]
           }.svg`)
         ).default;

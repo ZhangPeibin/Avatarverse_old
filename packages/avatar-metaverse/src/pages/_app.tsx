@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
 import 'antd/dist/antd.css';
-import '@/styles/global.css';
+import '../styles/global.css';
 import { appWithTranslation } from 'next-i18next';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
